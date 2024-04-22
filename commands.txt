@@ -1,0 +1,18 @@
+npm create vite@latest <file name>
+https://www.npmjs.com/package/vite
+//installing tail wind css using vite 
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+//changing the index.css and also the tailwind config file
+https://tailwindcss.com/docs/guides/vite
+
+//for running the application
+npm run dev
+
+npm run dev -- --host    //for exposing to the network
+ 
+
+ npm i express ejs
+
+ also installed  nodemon server
+ 

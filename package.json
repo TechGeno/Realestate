@@ -1,0 +1,20 @@
+{
+  "name": "real_estate",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "./api/index.js",
+  "scripts": {
+    "start": "node index.js",
+    "devStart": "nodemon ./api/index.js"
+  },
+  "keywords": [],
+  "author": "Harsha",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
