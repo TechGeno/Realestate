@@ -12,7 +12,7 @@ npm run dev
 npm run dev -- --host    //for exposing to the network
  
 
- npm i express ejs
+ npm i express ejs mongoose bcryptjs
 
- also installed  nodemon server
- 
+ also installed  nodemon server 
+

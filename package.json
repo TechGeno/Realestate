@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Your project description",
   "main": "./api/index.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "devStart": "nodemon ./api/index.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "keywords": [],
   "author": "Harsha",
@@ -14,7 +15,12 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "nodemon": "^2.0.22"
   }
 }
