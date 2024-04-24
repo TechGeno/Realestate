@@ -17,13 +17,24 @@ const app = express();
 
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+
 // app.set('view engine', 'ejs');   // need to make the file name as ejs   
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
     console.log("Server is running lets!!!");
 })
 
 
-app.use("/api/user",userRouter);
-app.use("/api/auth",authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
+
+
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    return res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message,
+    });
+});
