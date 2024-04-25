@@ -12,15 +12,21 @@
   "author": "Harsha",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "autoprefixer": "^10.4.19",
+    "nodemon": "^2.0.22",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "react-redux": "^9.1.1"
   }
 }

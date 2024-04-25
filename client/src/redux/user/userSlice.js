@@ -1,31 +1,30 @@
-import { creatSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-const intialState = {
+const initialState = {
     currentUser: null,
     error: null,
-    loadinf: false,
+    loading: false,
 };
 
-const userSlice = creatSlice({
+const userSlice = createSlice({
     name: 'user',
-    intialState,
+    initialState,
     reducers: {
         signInStart: (state) => {
             state.loading = true;
         },
         signInSuccess: (state, action) => {
-            state.loading = false;
             state.currentUser = action.payload;
+            state.loading = false;
             state.error = null;
         },
-        //reducers for sign in fail and user logout
-        signInFail: (state, action) => {
-            state.loading = false;
+        signInFailure: (state, action) => {
             state.error = action.payload;
+            state.loading = false;
         }
     }
 });
 
-export const { signInStart, signInSuccess, signInFail } = userSlice.actions;
+export const { signInStart, signInSuccess, signInFailure } = userSlice.actions;
 
 export default userSlice.reducer;
