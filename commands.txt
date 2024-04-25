@@ -16,3 +16,6 @@ npm run dev -- --host    //for exposing to the network
 
  also installed  nodemon server :
 
+ -also the redux tools and other things from the docs for redux
+ -install npm redux-persist
+
