@@ -19,4 +19,5 @@ npm run dev -- --host    //for exposing to the network
  -also the redux tools and other things from the docs for redux
  -install npm redux-persist
  //need to check 
+ -install fire base
 

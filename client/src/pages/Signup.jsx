@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
-import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import OAuth from '../components/Oauth.jsx';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);  
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setError(null);
@@ -60,7 +59,7 @@ export default function SignUp() {
       return;
     }
     try {
-      dispatch(signInStart());
+      setLoading(true);
       const res = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -79,14 +78,17 @@ export default function SignUp() {
           setError("Email is already in use");
           return ;
         }
-        dispatch(signInFailure(data.message));
+        setLoading(false);
+        setError(data.message);
         return;
       }
       
-      dispatch(signInSuccess(data));
+      setLoading(false);
+      setError(null);
       navigate("/signin");
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -128,6 +130,7 @@ export default function SignUp() {
         >
           {loading ? "Loading..." : "Sign Up"}
         </button>
+        <OAuth/>
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
