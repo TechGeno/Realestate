@@ -90,7 +90,8 @@ export default function Profile() {
         dispatch(deleteUserFailure(data.message));
         return;
       }
-      
+      // If everything foes according to plan
+      dispatch(deleteUserSuccess(data));
     }
     catch(error){
       dispatch(deleteUserFailure(error.message));
