@@ -125,22 +125,28 @@ export default function Profile() {
           onChange={handleChange}
         />
         <input
-          type='password'
+          type='text'
           placeholder='password'
           defaultValue={"********"}
           id='password'
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
-        <button className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'>
-          Update
+        <button
+          disabled={loading}
+          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+        >
+          {loading ? 'Loading...' : 'Update'}
         </button>
       </form>
       <div className='flex justify-between mt-5'>
         <span className='text-red-700 cursor-pointer'>Delete</span>
         <span className='text-red-700 cursor-pointer'>Sign out</span>
       </div>
-      
+      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      <p className='text-green-700 mt-5'>
+        {updateSuccess ? 'User is updated successfully!' : ''}
+      </p>
     </div>
    
   );
