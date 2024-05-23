@@ -1,20 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import OAuth from '../components/Oauth.jsx';
+import Oauth from '../components/Oauth.jsx';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setError(null);
-    const val = e.target.value.trim();
-    setFormData({
-      ...formData,
-      [e.target.id]: val,
-    });
+    setError(null); // Clear any previous errors on input change
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value.trim(),
+    }));
   };
 
   const validateForm = () => {
@@ -68,7 +68,7 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success === false) {
+      if (!data.success) {
         if (!data.usernameAvailable) {
           setError("Username is already taken");
           return ;
@@ -78,8 +78,7 @@ export default function SignUp() {
           setError("Email is already in use");
           return ;
         }
-        setLoading(false);
-        setError(data.message);
+        setError(data.message || "Sign up failed");
         return;
       }
       
@@ -88,7 +87,7 @@ export default function SignUp() {
       navigate("/signin");
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      setError(error.message || "Sign up failed");
     }
   };
 
@@ -126,11 +125,11 @@ export default function SignUp() {
         />
         <button
           disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-500 text-white p-3 rounded-lg uppercase hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           {loading ? "Loading..." : "Sign Up"}
         </button>
-        <OAuth/>
+        <Oauth />
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
@@ -138,6 +137,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign in</span>
         </Link>
       </div>
+      {error && <p className="text-red-500 mt-3">{error}</p>}
     </div>
   );
 }

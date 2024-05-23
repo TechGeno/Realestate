@@ -6,8 +6,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Signin from './pages/Signin';
 import Navbar from './components/Navbar';
+import CreateList from './pages/CreateList';
 import PrivateRoute from './components/PrivateRoute';
-
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,6 +19,7 @@ export default function App() {
       <Route path="/about" element={<About />}/>
       <Route  element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile />}/>
+        <Route path="/createlist" element={<CreateList/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

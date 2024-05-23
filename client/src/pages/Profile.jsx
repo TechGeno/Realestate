@@ -6,6 +6,7 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
+import { Link } from 'react-router-dom';
 import { app } from '../firebase';
 import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure,deleteUserStart,deleteUserSuccess, signoutUserFailure,signoutUserStart,signoutUserSuccess } from '../redux/user/userSlice.js';
 import { useDispatch } from 'react-redux';
@@ -99,25 +100,19 @@ export default function Profile() {
   }
 
   const handleSignOut = async () => {
-
     try {
-      dispatch(signoutUserStart());
-      const res = await fetch('/api/user/signout');
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
       const data = await res.json();
-      if (res.ok) {
-        dispatch(signoutUserSuccess());
-        window.location.href = '/';
-      }else{
-        dispatch(signoutUserFailure(data.message));
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
         return;
       }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
     }
-    catch (error) {
-      dispatch(signoutUserFailure(data.message));
-      return;
-    
-    }
-  }
+  };
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -178,6 +173,12 @@ export default function Profile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
+        <Link
+          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
+          to={'/createlist'}
+        >
+          Create Listing
+        </Link>
       </form>
       <div className='flex justify-between mt-5'>
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete</span>
