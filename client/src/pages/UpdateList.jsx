@@ -163,7 +163,11 @@ export default function UpdateList() {
       if (data.success === false) {
         setError(data.message);
       }
-      navigate(`/list/${data._id}`);
+      if (data && data._id) {
+        navigate(`/list/${data._id}`);
+      } else {
+        console.error('data._id is undefined');
+      }
     } catch (error) {
       setError(error.message);
       setLoading(false);
