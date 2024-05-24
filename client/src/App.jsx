@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Signin from './pages/Signin';
 import Navbar from './components/Navbar';
-import CreateList from './pages/CreateList';
+import CreateList from './pages/Createlist';
 import PrivateRoute from './components/PrivateRoute';
 export default function App() {
   return (

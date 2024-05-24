@@ -100,6 +100,8 @@ export default function CreateList() {
   };
 
   const handleChange = (e) => {
+    // checking for each and every event possible 
+    
     if (e.target.id === 'sale' || e.target.id === 'rent') {
       setFormData({
         ...formData,
@@ -118,6 +120,8 @@ export default function CreateList() {
       });
     }
 
+    //for the rest of the  values to change 
+    
     if (
       e.target.type === 'number' ||
       e.target.type === 'text' ||
