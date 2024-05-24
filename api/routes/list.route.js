@@ -1,5 +1,5 @@
 import express from 'express';
-import { createList,deleteList } from '../controllers/list.controller.js';
+import { createList,deleteList,updateList,getList,getLists } from '../controllers/list.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
@@ -7,6 +7,7 @@ const router = express.Router();
 //create lists route with token check
 router.post('/create',verifyToken,createList)
 router.delete('/delete/:id',verifyToken,deleteList)
-
-
+router.post('/update/:id',verifyToken,updateList)
+router.get('/get/:id', getList);
+router.get('/get', getLists);
 export default router;

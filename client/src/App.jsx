@@ -7,6 +7,7 @@ import About from './pages/About';
 import Signin from './pages/Signin';
 import Navbar from './components/Navbar';
 import CreateList from './pages/Createlist';
+import UpdateList from './pages/UpdateList';
 import PrivateRoute from './components/PrivateRoute';
 export default function App() {
   return (
@@ -20,9 +21,10 @@ export default function App() {
       <Route  element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile />}/>
         <Route path="/createlist" element={<CreateList/>}/>
+        <Route path="/updatelist" element={<UpdateList/>}/>
       </Route>
     </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
   )
   
 }

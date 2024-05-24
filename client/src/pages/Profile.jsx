@@ -261,7 +261,7 @@ export default function Profile() {
                 <button
                   onClick={() => handleListDelete(list._id)}
                   className='text-red-700 uppercase'
-                >
+                > 
                   Delete
                 </button>
                 <Link to={`/updatelist/${list._id}`}>
