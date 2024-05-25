@@ -27,8 +27,7 @@ export default function ListItem({ list }) {
             {list.description}
           </p>
           <p className='text-slate-500 mt-2 font-semibold '>
-            $
-            {list.offer
+           ₹{list.offer
               ? list.discountPrice.toLocaleString('en-US')
               : list.regularPrice.toLocaleString('en-US')}
             {list.type === 'rent' && ' / month'}
