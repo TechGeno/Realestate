@@ -65,18 +65,22 @@ export const deleteList = async (req, res, next) => {
     }
   };
   
+  // this is for the search bar functionality 
+  
   export const getLists = async (req, res, next) => {
     try {
       const limit = parseInt(req.query.limit) || 9;
       const startIndex = parseInt(req.query.startIndex) || 0;
       let offer = req.query.offer;
-  
+      // Checking for the offer
       if (offer === undefined || offer === 'false') {
-        offer = { $in: [false, true] };
+        offer = { $in: [false, true] };   // Mongodb query in db (db.collection.find({ offer: { $in: [false, true] } });)
       }
   
+      
+      // getting each and everything from the query 
       let furnished = req.query.furnished;
-  
+      
       if (furnished === undefined || furnished === 'false') {
         furnished = { $in: [false, true] };
       }
@@ -92,15 +96,17 @@ export const deleteList = async (req, res, next) => {
       if (type === undefined || type === 'all') {
         type = { $in: ['sale', 'rent'] };
       }
-  
+      
+      // for the rest of the sorting options 
       const searchTerm = req.query.searchTerm || '';
   
       const sort = req.query.sort || 'createdAt';
   
       const order = req.query.order || 'desc';
   
+      // Getting the required from required model  
       const lists = await List.find({
-        name: { $regex: searchTerm, $options: 'i' },
+        name: { $regex: searchTerm, $options: 'i' }, //getting required, options for ignoring lowercase and upper case
         offer,
         furnished,
         parking,
@@ -109,7 +115,8 @@ export const deleteList = async (req, res, next) => {
         .sort({ [sort]: order })
         .limit(limit)
         .skip(startIndex);
-  
+      
+        // end return the response
       return res.status(200).json(lists);
     } catch (error) {
       next(error);

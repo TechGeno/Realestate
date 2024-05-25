@@ -8,6 +8,7 @@ import Signin from './pages/Signin';
 import List from './pages/List';
 import Navbar from './components/Navbar';
 import CreateList from './pages/Createlist';
+import Search from './pages/Search';
 import UpdateList from './pages/UpdateList';
 import PrivateRoute from './components/PrivateRoute';
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
       <Route path="/signup" element={<Singup />}/>
       <Route path="/signin" element={<Signin />}/>
       <Route path="/about" element={<About />}/>
+      <Route path="/search" element={<Search />}/>
       <Route path="/list/:listId" element={<List />}/>
       <Route  element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile />}/>
